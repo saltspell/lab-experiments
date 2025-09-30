@@ -1,0 +1,23 @@
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      - image: cimg/base:2025.08
+    steps:
+      - run:
+          name: Install bash
+          command: sudo apt-get update && sudo apt-get install -y bash
+      - run:
+          name: Ejecutar script en Bash
+          command: |
+            echo "Hola desde Bash"
+            pwd
+            ls -la
+            bash -c 'echo "Este comando se ejecuta dentro de bash"'
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
